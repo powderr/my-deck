@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retrieval Quality — Hybrid Search</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;height:100%;overflow:hidden;background:#22242C}
+body{width:1280px;height:720px;overflow:hidden;position:absolute;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#22242C;color:#fff;display:flex;flex-direction:column;padding:60px 90px 52px}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.bar{position:fixed;top:0;left:0;width:5px;height:100%;background:linear-gradient(to bottom,#0077CC,#00BFB3)}
+
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.f1{opacity:0;animation:up .5s ease forwards .08s}
+.f2{opacity:0;animation:up .5s ease forwards .22s}
+.f3{opacity:0;animation:up .5s ease forwards .36s}
+.f4{opacity:0;animation:up .5s ease forwards .52s}
+.f5{opacity:0;animation:up .5s ease forwards .68s}
+
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1BA9F5;margin-bottom:10px}
+h2{font-size:2.6rem;font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:28px}
+h2 em{font-style:normal;color:#FEC514}
+
+/* Diagram row */
+.diagram{display:flex;align-items:stretch;gap:0;flex:1;margin-bottom:20px}
+
+.box{flex:1;border-radius:14px;padding:20px 22px;border:1px solid}
+.box-kw{background:rgba(254,197,20,0.06);border-color:rgba(254,197,20,0.2)}
+.box-vec{background:rgba(0,119,204,0.07);border-color:rgba(0,119,204,0.22)}
+.box-out{background:rgba(0,191,179,0.07);border-color:rgba(0,191,179,0.22)}
+
+.box-title{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.kw-t{color:#FEC514}.vec-t{color:#1BA9F5}.out-t{color:#00BFB3}
+
+.box ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.box li{font-size:.8rem;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:8px;line-height:1.4}
+.box li::before{content:'▸';font-size:.65rem;opacity:.5;flex-shrink:0}
+
+/* Center fusion block */
+.fusion{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 18px;gap:8px}
+.arrow-txt{font-size:.7rem;color:rgba(255,255,255,.28);font-family:'JetBrains Mono',monospace;white-space:nowrap}
+.rrf-pill{background:linear-gradient(135deg,rgba(0,119,204,0.28),rgba(0,191,179,0.18));border:1px solid rgba(0,191,179,0.3);border-radius:100px;padding:5px 14px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#00BFB3}
+.arrow{font-size:1.1rem;color:rgba(255,255,255,.25)}
+
+/* Fusion detail in center box */
+.fuse-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;flex:1.2}
+.fuse-box h4{font-size:.95rem;font-weight:700;margin-bottom:4px}
+.fuse-box p{font-size:.78rem;color:rgba(255,255,255,.52);line-height:1.55}
+
+/* Benefit row */
+.benefits{display:flex;gap:14px}
+.benefit{flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 16px}
+.benefit strong{display:block;font-size:.82rem;font-weight:700;margin-bottom:5px}
+.benefit p{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.5}
+.b-yel strong{color:#FEC514}
+.b-blu strong{color:#1BA9F5}
+.b-tel strong{color:#00BFB3}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<div class="eyebrow f1">02 — The Upgrade</div>
+<h2 class="f2">Hybrid Search: <em>Best of Both Worlds</em></h2>
+
+<div class="diagram f3">
+  <div class="box box-kw">
+    <div class="box-title kw-t">Keyword · BM25</div>
+    <ul>
+      <li>Exact term matching</li>
+      <li>Rare &amp; named entities</li>
+      <li>Part numbers, codes</li>
+      <li>Proven &amp; explainable</li>
+    </ul>
+  </div>
+
+  <div class="fusion f4">
+    <div class="arrow-txt">combine</div>
+    <div class="arrow">→</div>
+    <div class="rrf-pill">RRF</div>
+    <div class="arrow">→</div>
+    <div class="arrow-txt">rank</div>
+  </div>
+
+  <div class="fuse-box f4">
+    <span class="rrf-pill" style="align-self:flex-start;margin-bottom:8px">Reciprocal Rank Fusion</span>
+    <h4>No score normalisation headaches</h4>
+    <p>Merges the ranked lists from BM25 and ANN into a single coherent ranking. Each result's final score is the sum of reciprocal ranks — no calibration required between incompatible scoring scales.</p>
+  </div>
+
+  <div class="fusion f4">
+    <div class="arrow">→</div>
+  </div>
+
+  <div class="box box-vec">
+    <div class="box-title vec-t">Vector · ANN</div>
+    <ul>
+      <li>Semantic intent</li>
+      <li>Paraphrases &amp; synonyms</li>
+      <li>Multilingual queries</li>
+      <li>Concept-level recall</li>
+    </ul>
+  </div>
+</div>
+
+<div class="benefits f5">
+  <div class="benefit b-yel">
+    <strong>Higher Recall</strong>
+    <p>Catches results that pure keyword or pure vector alone would miss.</p>
+  </div>
+  <div class="benefit b-blu">
+    <strong>Precision on Specifics</strong>
+    <p>Named entities, codes, and exact phrases still rank exactly right.</p>
+  </div>
+  <div class="benefit b-tel">
+    <strong>Native in Elasticsearch</strong>
+    <p>ELSER + dense vectors + RRF retriever — no custom glue code.</p>
+  </div>
+</div>
+
+<script src="/js/fuckslides.js"></script>
+<script>
+(function(){if(window!==window.top)return;const W=1280,H=720;function f(){var s=Math.min(innerWidth/W,innerHeight/H);document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='0 0';document.body.style.left=((innerWidth-W*s)/2)+'px';document.body.style.top=((innerHeight-H*s)/2)+'px'}f();addEventListener('resize',f)})();
+</script>
+</body>
+</html>

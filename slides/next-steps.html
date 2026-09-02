@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retrieval Quality — Next Steps</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{width:100%;height:100%;overflow:hidden;background:#22242C}
+body{width:1280px;height:720px;overflow:hidden;position:absolute;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;background:#22242C;color:#fff;display:flex;flex-direction:column;padding:60px 90px 52px}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,0.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.bar{position:fixed;top:0;left:0;width:5px;height:100%;background:linear-gradient(to bottom,#0077CC,#00BFB3)}
+
+/* Teal glow bottom-right */
+body::after{content:'';position:fixed;bottom:-100px;right:-100px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(0,191,179,0.12) 0%,transparent 65%);pointer-events:none}
+
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.f1{opacity:0;animation:up .5s ease forwards .08s}
+.f2{opacity:0;animation:up .5s ease forwards .22s}
+.f3{opacity:0;animation:up .5s ease forwards .36s}
+.f4{opacity:0;animation:up .5s ease forwards .50s}
+.f5{opacity:0;animation:up .5s ease forwards .64s}
+.f6{opacity:0;animation:up .5s ease forwards .78s}
+
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1BA9F5;margin-bottom:10px}
+h2{font-size:2.6rem;font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:28px}
+h2 em{font-style:normal;color:#1BA9F5}
+
+.steps{display:flex;gap:16px;flex:1;margin-bottom:24px}
+.step{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden}
+.step::after{content:attr(data-n);position:absolute;bottom:-10px;right:0;font-size:5rem;font-weight:900;color:rgba(255,255,255,.035);line-height:1;pointer-events:none}
+.step-icon{font-size:1.5rem;margin-bottom:10px}
+.step .tag{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:10px}
+.step h4{font-size:.92rem;font-weight:700;margin-bottom:7px;color:#fff}
+.step p{font-size:.77rem;color:rgba(255,255,255,.52);line-height:1.56;position:relative;z-index:1}
+
+.s1{border-color:rgba(0,119,204,0.25)}.s1 .tag{background:rgba(0,119,204,0.18);color:#1BA9F5}
+.s2{border-color:rgba(0,191,179,0.25)}.s2 .tag{background:rgba(0,191,179,0.16);color:#00BFB3}
+.s3{border-color:rgba(240,78,152,0.22)}.s3 .tag{background:rgba(240,78,152,0.14);color:#F04E98}
+.s4{border-color:rgba(254,197,20,0.22)}.s4 .tag{background:rgba(254,197,20,0.12);color:#FEC514}
+
+.footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,0.07)}
+.logo{display:flex;align-items:center;gap:12px}
+.elastic-mark{width:32px;height:32px;background:linear-gradient(135deg,#FEC514,#f5a623);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;font-style:italic;color:#22242C;flex-shrink:0}
+.logo-text{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.4)}
+.tagline{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.3)}
+.cta{background:linear-gradient(135deg,#0077CC,#00BFB3);border-radius:100px;padding:10px 26px;font-size:.82rem;font-weight:700;letter-spacing:.02em;color:#fff;box-shadow:0 4px 22px rgba(0,119,204,0.35)}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<div class="eyebrow f1">04 — Action</div>
+<h2 class="f2">Next Steps with <em>Elastic</em></h2>
+
+<div class="steps">
+  <div class="step s1 f3" data-n="1">
+    <div class="step-icon">⚡</div>
+    <span class="tag">Quick Win</span>
+    <h4>Enable Hybrid Search</h4>
+    <p>Turn on ELSER + dense vector fields in your index. Add the RRF retriever. Benchmark against your BM25 baseline — same data, better results.</p>
+  </div>
+  <div class="step s2 f4" data-n="2">
+    <div class="step-icon">🔬</div>
+    <span class="tag">Evaluate</span>
+    <h4>Measure Retrieval Quality</h4>
+    <p>Use NDCG@10, MRR, and precision metrics to know exactly where your retriever loses ground — before it shows up as an LLM failure.</p>
+  </div>
+  <div class="step s3 f5" data-n="3">
+    <div class="step-icon">🤖</div>
+    <span class="tag">RAG Stack</span>
+    <h4>Plug into Your LLM Pipeline</h4>
+    <p>Connect Elasticsearch as the retriever in LangChain, LlamaIndex, or the Elastic Python client. Production-grade RAG, out of the box.</p>
+  </div>
+  <div class="step s4 f6" data-n="4">
+    <div class="step-icon">📈</div>
+    <span class="tag">Scale</span>
+    <h4>Rerank &amp; Personalize</h4>
+    <p>Add a cross-encoder reranker on top-k results. Layer in user context, recency signals, and domain boosts for precision at scale.</p>
+  </div>
+</div>
+
+<div class="footer f6">
+  <div class="logo">
+    <div class="elastic-mark">e</div>
+    <span class="logo-text">elastic.co/search-labs</span>
+  </div>
+  <span class="tagline">Search. Observe. Protect.</span>
+  <span class="cta">Start Building →</span>
+</div>
+
+<script src="/js/fuckslides.js"></script>
+<script>
+(function(){if(window!==window.top)return;const W=1280,H=720;function f(){var s=Math.min(innerWidth/W,innerHeight/H);document.body.style.transform='scale('+s+')';document.body.style.transformOrigin='0 0';document.body.style.left=((innerWidth-W*s)/2)+'px';document.body.style.top=((innerHeight-H*s)/2)+'px'}f();addEventListener('resize',f)})();
+</script>
+</body>
+</html>
